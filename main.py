@@ -21,6 +21,13 @@ character = player.Player(10, 10, 5, 5)
 while True: #Main loop
     screen.update_screen(stdscr, level, character)
     screen.update_player_status(status_screen, character)
+    character.check()
+    if not character.alive:
+        status.status(status_screen, "You die...")
+        break
+        
+    character.hp -= 1
+        
     key = stdscr.getch()
     if key == curses.KEY_UP:
         if character.y_pos > 0:
