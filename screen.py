@@ -28,6 +28,7 @@ def update_screen(screen, level, player=None):
     
     if player is not None: #A player needs to be plotted
         screen.addstr(player.y_pos, player.x_pos, tile.tile_symbols[tile.TileType.player])
+    screen.refresh()
     
 def update_status_line(screen, status):
     screen.move(0, 0)
