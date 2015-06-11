@@ -2,7 +2,6 @@
 This file contains the main loop of the program
 """
 
-import time
 import curses
 
 import screen
