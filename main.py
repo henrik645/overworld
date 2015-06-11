@@ -26,8 +26,6 @@ while True: #Main loop
         status.status(status_screen, "You die...")
         break
         
-    character.hp -= 1
-        
     key = stdscr.getch()
     if key == curses.KEY_UP:
         if character.y_pos > 0:
