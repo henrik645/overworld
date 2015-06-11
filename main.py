@@ -24,19 +24,19 @@ while True: #Main loop
     key = stdscr.getch()
     if key == curses.KEY_UP:
         if character.y_pos > 0:
-            if level.map[character.x_pos][character.y_pos - 1].solid == False:
+            if level.map[character.y_pos - 1][character.x_pos].solid == False:
                 character.y_pos -= 1
     elif key == curses.KEY_DOWN:
         if character.y_pos < level_height - 1: #Minus once since coordinates start at 0 instead of 1
-            if level.map[character.x_pos][character.y_pos + 1].solid == False:
+            if level.map[character.y_pos + 1][character.x_pos].solid == False:
                 character.y_pos += 1
     elif key == curses.KEY_LEFT:
         if character.x_pos > 0:
-            if level.map[character.x_pos - 1][character.y_pos].solid == False:
+            if level.map[character.y_pos][character.x_pos - 1].solid == False:
                 character.x_pos -= 1
     elif key == curses.KEY_RIGHT:
         if character.x_pos < level_width - 1: #Minus once since coordinates start at 0 instead of 1
-            if level.map[character.x_pos + 1][character.y_pos].solid == False:
+            if level.map[character.y_pos][character.x_pos + 1].solid == False:
                 character.x_pos += 1
     elif key == ord('q'):
         break
