@@ -3,6 +3,7 @@ This file contains the main loop of the program
 """
 
 import curses
+import json
 
 import screen
 import world
@@ -11,6 +12,9 @@ import status
 
 level_width = 80
 level_height = 20
+
+with open('config.json', 'r') as file:
+    config = json.loads(file.read())
 
 stdscr = screen.init_screen()
 status_screen = status.init_screen(level_width, level_height)
