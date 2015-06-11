@@ -35,4 +35,8 @@ def update_status_line(screen, status):
     screen.refresh()
     
 def update_player_status(screen, player):
-    pass
+    screen.move(1, 0)
+    screen.clrtoeol()
+    screen.addstr(1, 1, "HP: " + str(player.hp))
+    screen.addstr(1, 12, "DF: " + str(player.defense))
+    screen.refresh()
