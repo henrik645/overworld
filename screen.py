@@ -30,7 +30,8 @@ def update_screen(screen, level, player=None):
         screen.addstr(player.y_pos, player.x_pos, tile.tile_symbols[tile.TileType.player])
     
 def update_status_line(screen, status):
-    screen.clear()
+    screen.move(0, 0)
+    screen.clrtoeol()
     screen.addstr(0, 1, status) #Adds status string
     screen.refresh()
     
