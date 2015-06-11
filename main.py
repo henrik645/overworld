@@ -9,8 +9,6 @@ import world
 import player
 import status
 
-import tile
-
 level_width = 80
 level_height = 20
 
