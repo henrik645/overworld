@@ -8,6 +8,8 @@ import screen
 import world
 import player
 import status
+import save
+import os
 
 level_width = 80
 level_height = 20
@@ -15,8 +17,13 @@ level_height = 20
 stdscr = screen.init_screen()
 status_screen = status.init_screen(level_width, level_height)
 
-level = world.Level(level_width, level_height)
-character = player.Player(10, 10, 5, 5)
+if os.path.isfile('save.p'):
+    save_game = save.load_game('save.p')
+    level = save_game.world_save
+    character = save_game.player_save
+else:
+    level = world.Level(level_width, level_height)
+    character = player.Player(10, 10, 5, 5)
 
 while True: #Main loop
     screen.update_screen(stdscr, level, character)
@@ -44,6 +51,10 @@ while True: #Main loop
             if level.map[character.y_pos][character.x_pos + 1].solid == False:
                 character.x_pos += 1
     elif key == ord('q'):
+        break
+    elif key == ord('s'):
+        save_game = save.Save(character, level)
+        save_game.save_game('save.p')
         break
 
 screen.end(stdscr)
