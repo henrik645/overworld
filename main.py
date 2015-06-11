@@ -21,8 +21,8 @@ with open('config.json', 'r') as file:
 stdscr = screen.init_screen()
 status_screen = status.init_screen(level_width, level_height)
 
-if os.path.isfile('save.p'):
-    save_game = save.load_game('save.p')
+if os.path.isfile(config['save_file']):
+    save_game = save.load_game(config['save_file'])
     level = save_game.world_save
     character = save_game.player_save
 else:
@@ -58,7 +58,7 @@ while True: #Main loop
         break
     elif key == ord('s'):
         save_game = save.Save(character, level)
-        save_game.save_game('save.p')
+        save_game.save_game(config['save_file'])
         break
 
 screen.end(stdscr)
