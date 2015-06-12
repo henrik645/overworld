@@ -43,3 +43,5 @@ while True: #Main loop
         
     key = stdscr.getch()
     helpers.handle_input(key, character, level, level_width, level_height, stdscr, status_screen, config)
+
+exit_game(stdscr, status_screen)
