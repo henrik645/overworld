@@ -99,3 +99,12 @@ def handle_input(key, character, level, level_width, level_height, stdscr, statu
                     get_square_next_to(character, direction, level).update_object(tile.TileType.door_open)
                 else:
                     status.status(status_screen, "There is not a door there.")
+                    
+    elif key == ord('c'):
+        direction = get_direction(stdscr, status_screen)
+        if direction in directions:
+            if check_direction(direction, character, level_width, level_height):
+                if get_square_next_to(character, direction, level).object == tile.TileType.door_open:
+                    get_square_next_to(character, direction, level).update_object(tile.TileType.door)
+                else:
+                    status.status(status_screen, "There is not a door there.")
