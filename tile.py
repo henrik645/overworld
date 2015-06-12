@@ -27,6 +27,9 @@ is_solid = {
     
 class Tile:
     def __init__(self, object):
+        self.update_object(object)
+        
+    def update_object(self, object):
         self.solid = is_solid[object]
         self.symbol = tile_symbols[object]
         self.object = object

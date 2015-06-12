@@ -9,6 +9,8 @@ import json
 
 import screen
 import save
+import tile
+import status
 
 directions = {
     curses.KEY_UP,
@@ -91,27 +93,9 @@ def handle_input(key, character, level, level_width, level_height, stdscr, statu
         
     elif key == ord('o'):
         direction = get_direction(stdscr, status_screen)
-        if direction == curses.KEY_UP:
-            if character.y_pos > 0:
-                if level.map[character.y_pos - 1][character.x_pos].object == tile.TileType.door:
-                    level.map[character.y_pos - 1][character.x_pos] = tile.Tile(tile.TileType.door_open)
-                else:
-                    status.status(status_screen, "There is not a door there.")
-        elif direction == curses.KEY_DOWN:
-            if character.y_pos < level_height - 1:
-                if level.map[character.y_pos + 1][character.x_pos].object == tile.TileType.door:
-                    level.map[character.y_pos + 1][character.x_pos].symbol = tile.TileType.door_open
-                else:
-                    status.status(status_screen, "There is not a door there.")
-        elif direction == curses.KEY_LEFT:
-            if character.x_pos > 0:
-                if level.map[character.y_pos][character.x_pos - 1].object == tile.TileType.door:
-                    level.map[character.y_pos][character.x_pos - 1] = tile.Tile(tile.TileType.door_open)
-                else:
-                    status.status(status_screen, "There is not a door there.")
-        elif direction == curses.KEY_RIGHT:
-            if character.x_pos < level_width - 1:
-                if level.map[character.y_pos][character.x_pos + 1].object == tile.TileType.door:
-                    level.map[character.y_pos][character.x_pos + 1] = tile.Tile(tile.TileType.door_open)
+        if direction in directions:
+            if check_direction(direction, character, level_width, level_height):
+                if get_square_next_to(character, direction, level).object == tile.TileType.door:
+                    get_square_next_to(character, direction, level).update_object(tile.Tile(tile.TileType.door_open))
                 else:
                     status.status(status_screen, "There is not a door there.")
