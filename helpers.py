@@ -96,6 +96,6 @@ def handle_input(key, character, level, level_width, level_height, stdscr, statu
         if direction in directions:
             if check_direction(direction, character, level_width, level_height):
                 if get_square_next_to(character, direction, level).object == tile.TileType.door:
-                    get_square_next_to(character, direction, level).update_object(tile.Tile(tile.TileType.door_open))
+                    get_square_next_to(character, direction, level).update_object(tile.TileType.door_open)
                 else:
                     status.status(status_screen, "There is not a door there.")
