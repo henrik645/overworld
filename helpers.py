@@ -5,8 +5,10 @@ checks directions, and more.
 
 import curses
 import sys
+import json
 
 import screen
+import save
 
 directions = {
     curses.KEY_UP,
@@ -19,6 +21,10 @@ def exit_game(stdscr, status_screen):
     screen.end(stdscr)
     screen.end(status_screen)
     sys.exit(0)
+    
+def read_config(location):
+    with open(location, 'r') as file:
+        return json.loads(file.read())
 
 def get_direction(stdscr, status_screen):
     directions = [
@@ -69,7 +75,7 @@ def move_character(character, direction, step=1):
     else:
         raise NotImplementedError('Not a valid direction')
 
-def handle_input(key, character, level, level_width, level_height, stdscr, status_screen):
+def handle_input(key, character, level, level_width, level_height, stdscr, status_screen, config):
     if key in directions:
         if check_direction(key, character, level_width, level_height):
             if get_square_next_to(character, key, level).solid == False:

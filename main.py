@@ -3,7 +3,6 @@ This file contains the main loop of the program
 """
 
 import curses
-import json
 import os
 
 import screen
@@ -17,8 +16,7 @@ import helpers
 level_width = 80
 level_height = 20
 
-with open('config.json', 'r') as file:
-    config = json.loads(file.read())
+config = helpers.read_config('config.json')
 
 stdscr = screen.init_screen()
 status_screen = status.init_screen(level_width, level_height)
@@ -44,4 +42,4 @@ while True: #Main loop
         break
         
     key = stdscr.getch()
-    helpers.handle_input(key, character, level, level_width, level_height, stdscr, status_screen)
+    helpers.handle_input(key, character, level, level_width, level_height, stdscr, status_screen, config)
