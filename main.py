@@ -42,7 +42,6 @@ if os.path.isfile(config['save_file']):
     save_exists = True
 else:
     level = world.Level(level_width, level_height)
-    level.map[5][10] = tile.Tile(tile.TileType.door)
     character = player.Player(10, 10, 5, 5)
     save_exists = False
 
