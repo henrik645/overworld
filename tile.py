@@ -9,20 +9,23 @@ class TileType:
     player = 3
     door = 4
     door_open = 5
+    void = 6
     
 tile_symbols = {
     TileType.path: '.',
     TileType.wall: '#',
     TileType.player: '@',
     TileType.door: '+',
-    TileType.door_open: '-'
+    TileType.door_open: '-',
+    TileType.void: ' '
 }
 
 is_solid = {
     TileType.path: False,
     TileType.wall: True,
     TileType.door: True,
-    TileType.door_open: False
+    TileType.door_open: False,
+    TileType.void: True
 }
     
 class Tile:
