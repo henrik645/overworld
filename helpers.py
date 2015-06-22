@@ -108,3 +108,7 @@ def handle_input(key, character, level, level_width, level_height, stdscr, statu
                     get_square_next_to(character, direction, level).update_object(tile.TileType.door)
                 else:
                     status.status(status_screen, "There is not a door there.")
+
+def impossible(msg, stdscr, status_screen):
+    print('Something impossible happened! ' + msg, file=stderr)
+    exit_game()
